@@ -14,4 +14,6 @@ public class BaseConstants {
 	public static final float CACHE_REFRESH_MINUTES = (float) 180.0;
 	
 	public static final float BUFFER_DISTANCE = (float) 0.25;
+	
+	public static final String WEB_SERVICE_SF_FOOD_TRUCK = "SFDATA_FOODTRUCK";
 }

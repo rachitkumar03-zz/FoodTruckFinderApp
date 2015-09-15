@@ -3,6 +3,7 @@ package com.application.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.application.utils.DataFormatter;
 
@@ -23,6 +24,8 @@ public class FoodTruckCache extends HashMap<Integer, FoodTruck> {
 	private static FoodTruckCache instance;
 	
 	private String lastUpdated;
+	
+	private Map<String,Integer> geoHashMap = new HashMap<>();
 	
 	/**
 	 * Private constructor to prevent instantiation of the Cache Class
@@ -73,5 +76,19 @@ public class FoodTruckCache extends HashMap<Integer, FoodTruck> {
 	 */
 	public String getLastUpdatedTimeStamp() {
 		return lastUpdated;
-	}	
+	}
+	
+	/**
+	 * Populates the geo hash map
+	 */
+	public void setGeoHashMap (Map<String,Integer> map) {
+		this.geoHashMap = map;
+	}
+	
+	/**
+	 * Returns the geo hash map
+	 */
+	public Map<String,Integer> getGeoHashMap () {
+		return this.geoHashMap;
+	}
 }

@@ -11,37 +11,40 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.webservice.impl.SFDataWebService;
+import com.webservice.impl.WebServicesFactory;
 
 /**
  * This class takes in a a raw Json type data and creates Food Truck objects with it
  * @author Rachit
- *
+ * 
  */
 public class DataFormatter {
 
 	private Gson gsonObj;
 
 	/**
-	 * Constructor sets the Gson object
-	 * Converts objects based on the name in object class and Json (IDENTITY)
+	 * Constructor sets the Gson object Converts objects based on the name in
+	 * object class and Json (IDENTITY)
 	 */
 	public DataFormatter() {
-		gsonObj = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();
+		gsonObj = new GsonBuilder().setFieldNamingPolicy(
+				FieldNamingPolicy.IDENTITY).create();
 	}
 
 	/**
 	 * Calls the Webservice to get latest data
 	 * @return
 	 */
-	public Map<Integer, FoodTruck> getDataFromWebService () {
+	public Map<Integer, FoodTruck> getDataFromWebService() {
 
-		String rawData = new SFDataWebService().getLatestData();
+		String rawData = WebServicesFactory.getWebServiceImplClass(
+				BaseConstants.WEB_SERVICE_SF_FOOD_TRUCK).getData();
 		return getObjectFormattedData(rawData);
 	}
 
 	/**
-	 * Takes in a raw json string and converts it into a FoodTruck instance. Returns a map of Id to FoodTrucks
+	 * Takes in a raw json string and converts it into a FoodTruck instance.
+	 * Returns a map of Id to FoodTrucks
 	 * @param rawData
 	 * @return
 	 */
@@ -49,7 +52,7 @@ public class DataFormatter {
 		Map<Integer, FoodTruck> tempCacheMap = new HashMap<>();
 
 		JsonParser parser = new JsonParser();
-		JsonArray jsonData = (JsonArray)parser.parse(rawData);
+		JsonArray jsonData = (JsonArray) parser.parse(rawData);
 
 		FoodTruck foodTruck;
 		for (JsonElement jsonElem : jsonData) {
@@ -60,9 +63,9 @@ public class DataFormatter {
 		return tempCacheMap;
 	}
 
-
 	/**
-	 * Takes a list of FoodTrucks, converts it into a json and returns a String formatted Json
+	 * Takes a list of FoodTrucks, converts it into a json and returns a String
+	 * formatted Json
 	 * @param eligibleFoodTrucks
 	 * @return
 	 */

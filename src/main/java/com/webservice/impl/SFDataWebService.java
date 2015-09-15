@@ -19,7 +19,7 @@ import com.application.utils.BaseConstants;
  * @author Rachit
  *
  */
-public class SFDataWebService {
+public class SFDataWebService implements WebServices {
 
 	private URI endPoint;
 
@@ -35,7 +35,8 @@ public class SFDataWebService {
 	 * This makes a GET request to the SFDATA API to get latest food truck data
 	 * @return
 	 */
-	public String getLatestData() {
+	@Override
+	public String getData() {
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpGet httpGetRequest = new HttpGet(endPoint);
 		HttpResponse httpResponse = null;

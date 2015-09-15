@@ -24,8 +24,6 @@ public class FoodTruckFinderServlet {
 		if (!utils.isValidRequest(currentPos))
 			return Response.status(422).build();
 		
-		utils.getResponseData();
-		utils.getResponseData();
 		return Response.
 				status(200).
 				entity(utils.getResponseData()).
