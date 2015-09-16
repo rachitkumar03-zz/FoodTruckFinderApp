@@ -50,6 +50,7 @@ public class SFDataWebService implements WebServices {
 			// Execute HTTP request
 			httpResponse = httpClient.execute(httpGetRequest);
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				System.out.println("Web Service Call made. Status 200");
 				return EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
 			}
 		} catch (ClientProtocolException e) {
